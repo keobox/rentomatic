@@ -1,4 +1,4 @@
-import collections
+import collections.abc
 
 from rentomatic.shared import request_object as req
 
@@ -12,7 +12,7 @@ class StorageRoomListRequestObject(req.ValidRequestObject):
     def from_dict(cls, adict):
         invalid_req = req.InvalidRequestObject()
 
-        if 'filters' in adict and not isinstance(adict['filters'], collections.Mapping):
+        if 'filters' in adict and not isinstance(adict['filters'], collections.abc.Mapping):
             invalid_req.add_error('filters', 'Is not iterable')
 
         if invalid_req.has_errors():
